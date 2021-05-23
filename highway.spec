@@ -2,23 +2,18 @@
 %global debug_package   %nil
 %undefine __cmake3_in_source_build
 
-%global commit          376a400463f7e79e2e79e34ad67225e9397df54f
-%global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global snapshotdate    20210518
-%global prerelease      1
-
 %global common_description %{expand:
 Highway is a C++ library for SIMD (Single Instruction, Multiple Data), i.e.
 applying the same operation to 'lanes'.}
 
 Name:           highway
-Version:        0.12.0
-Release:        1%{?prerelease:.%{snapshotdate}git%{shortcommit}}%{?dist}
+Version:        0.12.1
+Release:        1%{?dist}
 Summary:        Efficient and performance-portable SIMD
 
 License:        ASL 2.0
 URL:            https://github.com/google/highway
-Source0:        %url/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
+Source0:        %url/archive/%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires:  cmake3
 BuildRequires:  gcc-c++
@@ -49,7 +44,7 @@ BuildArch:      noarch
 Documentation for Highway.
 
 %prep
-%autosetup -p1 -n %{name}-%{commit}
+%autosetup -p1 -n %{name}-%{version}
 
 %build
 do_build () {
@@ -77,5 +72,9 @@ scl enable devtoolset-8 do_build
 %doc g3doc hwy/examples
 
 %changelog
+* Sun May 23 2021 Robert-André Mauchin <zebob.m@gmail.com> - 0.12.1-1
+- Update to 0.12.1
+- Close: rhbz#1963675
+
 * Mon May 17 2021 Robert-André Mauchin <zebob.m@gmail.com> - 0.12.0-1.20210518git376a400
 - Initial RPM
