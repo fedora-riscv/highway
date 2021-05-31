@@ -2,13 +2,16 @@
 %global debug_package   %nil
 %undefine __cmake3_in_source_build
 
+# gtest in RHEL does not contain pkgconfig
+%global __requires_exclude %{?__requires_exclude:%__requires_exclude|}^pkgconfig\\(gtest\\)$
+
 %global common_description %{expand:
 Highway is a C++ library for SIMD (Single Instruction, Multiple Data), i.e.
 applying the same operation to 'lanes'.}
 
 Name:           highway
 Version:        0.12.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Efficient and performance-portable SIMD
 
 License:        ASL 2.0
@@ -28,6 +31,7 @@ BuildRequires:  scl-utils
 %package        devel
 Summary:        Development files for Highway
 Provides:       highway-static = %{version}-%{release}
+Requires:       gtest-devel
 
 %description devel
 %{common_description}
@@ -72,6 +76,9 @@ scl enable devtoolset-8 do_build
 %doc g3doc hwy/examples
 
 %changelog
+* Mon May 31 2021 Robert-André Mauchin <zebob.m@gmail.com> - 0.12.1-2
+- Add workaround for the lack of pkgconfig in RHEL8 gtest
+
 * Sun May 23 2021 Robert-André Mauchin <zebob.m@gmail.com> - 0.12.1-1
 - Update to 0.12.1
 - Close: rhbz#1963675
