@@ -6,7 +6,7 @@ Highway is a C++ library for SIMD (Single Instruction, Multiple Data), i.e.
 applying the same operation to 'lanes'.}
 
 Name:           highway
-Version:        0.12.1
+Version:        0.12.2
 Release:        1%{?dist}
 Summary:        Efficient and performance-portable SIMD
 
@@ -66,6 +66,9 @@ Documentation for Highway.
 %doc g3doc hwy/examples
 
 %changelog
+* Sun Jun 13 13:04:25 CEST 2021 Robert-André Mauchin <zebob.m@gmail.com> - 0.12.2-1
+- Update to 0.12.2
+
 * Sun May 23 19:03:29 CEST 2021 Robert-André Mauchin <zebob.m@gmail.com> - 0.12.1-1
 - Update to 0.12.0
 - Close: rhbz#1963675
