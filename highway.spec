@@ -9,8 +9,8 @@ Highway is a C++ library for SIMD (Single Instruction, Multiple Data), i.e.
 applying the same operation to 'lanes'.}
 
 Name:           highway
-Version:        0.12.1
-Release:        2%{?dist}
+Version:        0.12.2
+Release:        1%{?dist}
 Summary:        Efficient and performance-portable SIMD
 
 License:        ASL 2.0
@@ -70,6 +70,9 @@ Documentation for Highway.
 %doc g3doc hwy/examples
 
 %changelog
+* Sun Jun 13 13:15:46 CEST 2021 Robert-André Mauchin <zebob.m@gmail.com> - 0.12.2-1
+- Update to 0.12.2
+
 * Mon May 31 22:26:28 CEST 2021 Robert-André Mauchin <zebob.m@gmail.com> - 0.12.1-2
 - Add workaround for the lack of pkgconfig in RHEL8 gtest
 
