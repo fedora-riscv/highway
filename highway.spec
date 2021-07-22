@@ -7,7 +7,7 @@ applying the same operation to 'lanes'.}
 
 Name:           highway
 Version:        0.12.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Efficient and performance-portable SIMD
 
 License:        ASL 2.0
@@ -66,6 +66,9 @@ Documentation for Highway.
 %doc g3doc hwy/examples
 
 %changelog
+* Thu Jul 22 2021 Fedora Release Engineering <releng@fedoraproject.org> - 0.12.2-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
+
 * Sun Jun 13 13:04:25 CEST 2021 Robert-André Mauchin <zebob.m@gmail.com> - 0.12.2-1
 - Update to 0.12.2
 
