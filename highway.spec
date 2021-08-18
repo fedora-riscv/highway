@@ -13,6 +13,8 @@ Summary:        Efficient and performance-portable SIMD
 License:        ASL 2.0
 URL:            https://github.com/google/highway
 Source0:        %url/archive/%{version}/%{name}-%{version}.tar.gz
+# https://github.com/google/highway/issues/343
+Patch0:         https://github.com/google/highway/pull/344.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
