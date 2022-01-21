@@ -42,6 +42,11 @@ Documentation for Highway.
 %prep
 %autosetup -p1 -n %{name}-%{version}
 
+# https://github.com/google/highway/issues/398#issuecomment-1018831172
+%ifarch aarch64
+sed -i "/func(int16_t());/d ; /func(uint16_t());/d" hwy/tests/test_util-inl.h
+%endif
+
 %build
 %cmake -DHWY_SYSTEM_GTEST:BOOL=ON
 %cmake_build
