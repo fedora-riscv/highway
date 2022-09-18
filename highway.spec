@@ -83,7 +83,7 @@ scl enable devtoolset-8 do_build
 %doc g3doc hwy/examples
 
 %changelog
-* Sun Sep 18 13:43:22 CEST 2021 Robert-André Mauchin <zebob.m@gmail.com> - 1.0.1-1
+* Sun Sep CEST 2021 Robert-André Mauchin <zebob.m@gmail.com> - 1.0.1-1
 - Update to 1.0.1
 
 * Sun Jun 13 2021 Robert-André Mauchin <zebob.m@gmail.com> - 0.12.2-1
