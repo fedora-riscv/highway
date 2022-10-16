@@ -1,0 +1,48 @@
+diff --git a/hwy/detect_targets.h b/hwy/detect_targets.h
+index 0071c7b..486d9b2 100644
+--- a/hwy/detect_targets.h
++++ b/hwy/detect_targets.h
+@@ -331,7 +331,7 @@
+ #endif
+ 
+ #if HWY_ARCH_RVV && defined(__riscv_vector)
+-#define HWY_BASELINE_RVV HWY_RVV
++#define HWY_BASELINE_RVV 0
+ #else
+ #define HWY_BASELINE_RVV 0
+ #endif
+diff --git a/hwy/foreach_target.h b/hwy/foreach_target.h
+index 3929905..bc44b08 100644
+--- a/hwy/foreach_target.h
++++ b/hwy/foreach_target.h
+@@ -86,17 +86,6 @@
+ #endif
+ #endif
+ 
+-#if (HWY_TARGETS & HWY_RVV) && (HWY_STATIC_TARGET != HWY_RVV)
+-#undef HWY_TARGET
+-#define HWY_TARGET HWY_RVV
+-#include HWY_TARGET_INCLUDE
+-#ifdef HWY_TARGET_TOGGLE
+-#undef HWY_TARGET_TOGGLE
+-#else
+-#define HWY_TARGET_TOGGLE
+-#endif
+-#endif
+-
+ #if (HWY_TARGETS & HWY_SVE) && (HWY_STATIC_TARGET != HWY_SVE)
+ #undef HWY_TARGET
+ #define HWY_TARGET HWY_SVE
+diff --git a/hwy/highway.h b/hwy/highway.h
+index 615af4e..6b5c9b4 100644
+--- a/hwy/highway.h
++++ b/hwy/highway.h
+@@ -363,8 +363,6 @@ FunctionCache<RetType, Args...> DeduceFunctionCache(RetType (*)(Args...)) {
+ #include "hwy/ops/wasm_256-inl.h"
+ #elif HWY_TARGET == HWY_WASM
+ #include "hwy/ops/wasm_128-inl.h"
+-#elif HWY_TARGET == HWY_RVV
+-#include "hwy/ops/rvv-inl.h"
+ #elif HWY_TARGET == HWY_EMU128
+ #include "hwy/ops/emu128-inl.h"
+ #elif HWY_TARGET == HWY_SCALAR

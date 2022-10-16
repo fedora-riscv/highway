@@ -4,12 +4,14 @@ applying the same operation to 'lanes'.}
 
 Name:           highway
 Version:        1.0.1
-Release:        %autorelease
+Release:        %autorelease -e 0.riscv64
 Summary:        Efficient and performance-portable SIMD
 
 License:        ASL 2.0
 URL:            https://github.com/google/highway
 Source0:        %url/archive/%{version}/%{name}-%{version}.tar.gz
+
+Patch10:        attempt-to-disable-rvv.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
