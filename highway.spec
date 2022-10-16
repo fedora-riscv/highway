@@ -11,8 +11,6 @@ License:        ASL 2.0
 URL:            https://github.com/google/highway
 Source0:        %url/archive/%{version}/%{name}-%{version}.tar.gz
 
-Patch10:        attempt-to-disable-rvv.patch
-
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  gtest-devel
@@ -43,6 +41,10 @@ Documentation for Highway.
 %autosetup -p1 -n %{name}-%{version}
 
 %build
+%ifarch riscv64
+export CFLAGS="%optflags -DHWY_COMPILE_ONLY_EMU128 -DHWY_DISABLED_TARGETS=(HWY_RVV)"
+export CXXFLAGS="%optflags -DHWY_COMPILE_ONLY_EMU128 -DHWY_DISABLED_TARGETS=(HWY_RVV)"
+%endif
 %cmake -DHWY_SYSTEM_GTEST:BOOL=ON
 %cmake_build
 
