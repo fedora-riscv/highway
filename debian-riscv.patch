@@ -1,0 +1,48 @@
+Description: Minimal runtime dispatch on riscv64
+Author: Mathieu Malaterre <malat@debian.org>
+Forwarded: https://github.com/google/highway/issues/838
+Last-Update: 2022-07-08
+
+Index: highway/hwy/detect_targets.h
+===================================================================
+--- highway.orig/hwy/detect_targets.h
++++ highway/hwy/detect_targets.h
+@@ -374,7 +374,8 @@
+ 
+ // x86 compilers generally allow runtime dispatch. On Arm, currently only GCC
+ // does, and we require Linux to detect CPU capabilities.
+-#if HWY_ARCH_X86 || (HWY_ARCH_ARM && HWY_COMPILER_GCC_ACTUAL && HWY_OS_LINUX)
++#if HWY_ARCH_X86 || (HWY_ARCH_ARM && HWY_COMPILER_GCC_ACTUAL && HWY_OS_LINUX) \
++    || (HWY_ARCH_RVV && HWY_COMPILER_CLANG && HWY_OS_LINUX)
+ #define HWY_HAVE_RUNTIME_DISPATCH 1
+ #else
+ #define HWY_HAVE_RUNTIME_DISPATCH 0
+Index: highway/hwy/targets.cc
+===================================================================
+--- highway.orig/hwy/targets.cc
++++ highway/hwy/targets.cc
+@@ -42,7 +42,7 @@
+ #include <cpuid.h>
+ #endif  // HWY_COMPILER_MSVC
+ 
+-#elif HWY_ARCH_ARM && HWY_OS_LINUX
++#elif (HWY_ARCH_RVV || HWY_ARCH_ARM) && HWY_OS_LINUX
+ #include <asm/hwcap.h>
+ #include <sys/auxv.h>
+ #endif  // HWY_ARCH_*
+@@ -291,6 +291,15 @@ int64_t DetectTargets() {
+             bits, static_cast<int64_t>(HWY_ENABLED_BASELINE));
+   }
+ 
++#elif HWY_ARCH_RVV && HWY_HAVE_RUNTIME_DISPATCH
++  // uncomment the following line if you know what you are doing:
++  // bits |= HWY_RVV;
++  using CapBits = unsigned long;  // NOLINT
++  const CapBits hw = getauxval(AT_HWCAP);
++  const CapBits hw2 = getauxval(AT_HWCAP2);
++  fprintf(stderr, "DEBUG: getauxval returned %zx\n", size_t(hw) );
++  fprintf(stderr, "DEBUG: getauxval2 returned %zx\n", size_t(hw2) );
++
+ #elif HWY_ARCH_ARM && HWY_HAVE_RUNTIME_DISPATCH
+   using CapBits = unsigned long;  // NOLINT
+   const CapBits hw = getauxval(AT_HWCAP);

@@ -12,6 +12,8 @@ URL:            https://github.com/google/highway
 Source0:        %url/archive/%{version}/%{name}-%{version}.tar.gz
 
 Patch10:        96d1d5f788703eb3dd3a0f62d36a410f92d22666.patch
+Patch11:        12ca8ff15390ccc4ef0a257ec095bb50e8b288c0.patch
+Patch12:        debian-riscv.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
@@ -44,8 +46,8 @@ Documentation for Highway.
 
 %build
 %ifarch riscv64
-export CFLAGS="%optflags -DHWY_COMPILE_ONLY_SCALAR -DHWY_DISABLED_TARGETS=HWY_RVV"
-export CXXFLAGS="%optflags -DHWY_COMPILE_ONLY_SCALAR -DHWY_DISABLED_TARGETS=HWY_RVV"
+export CFLAGS="%optflags -DHWY_COMPILE_ONLY_EMU128 -DHWY_DISABLED_TARGETS=HWY_RVV"
+export CXXFLAGS="%optflags -DHWY_COMPILE_ONLY_EMU128 -DHWY_DISABLED_TARGETS=HWY_RVV"
 %endif
 %cmake -DHWY_SYSTEM_GTEST:BOOL=ON
 %cmake_build
