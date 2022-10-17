@@ -12,8 +12,8 @@ URL:            https://github.com/google/highway
 Source0:        %url/archive/%{version}/%{name}-%{version}.tar.gz
 
 Patch10:        96d1d5f788703eb3dd3a0f62d36a410f92d22666.patch
-Patch11:        12ca8ff15390ccc4ef0a257ec095bb50e8b288c0.patch
-Patch12:        debian-riscv.patch
+Patch11:        debian-riscv.patch
+Patch12:        riscv-use-rdtime.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
