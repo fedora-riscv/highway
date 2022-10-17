@@ -11,6 +11,8 @@ License:        ASL 2.0
 URL:            https://github.com/google/highway
 Source0:        %url/archive/%{version}/%{name}-%{version}.tar.gz
 
+Patch10:        96d1d5f788703eb3dd3a0f62d36a410f92d22666.patch
+
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  gtest-devel
