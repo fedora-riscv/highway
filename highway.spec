@@ -4,6 +4,10 @@ applying the same operation to 'lanes'.}
 
 %global toolchain clang
 
+%ifarch riscv64
+%define _lto_cflags %{nil}
+%endif
+
 Name:           highway
 Version:        1.0.4
 Release:        %autorelease -e 0.riscv64
