@@ -1,3 +1,0 @@
-# highway
-
-The highway package
