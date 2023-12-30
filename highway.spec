@@ -8,7 +8,11 @@ applying the same operation to 'lanes'.}
 %bcond gtest 0
 %bcond contrib 0
 %else
+%ifarch riscv64
+%bcond gtest 0
+%else
 %bcond gtest 1
+%endif
 %bcond contrib 1
 %endif
 
